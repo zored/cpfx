@@ -39,6 +39,7 @@ def getOids(hexstr):
 	return (params, dgst)
 
 def key2pem(key, oids, algo):
+	print("XXXX = " + key.hex())
 	key = OctetString(key)
 	algo = ObjectIdentifier(algo)
 	param = ObjectIdentifier(oids[0])
@@ -56,6 +57,7 @@ def key2pem(key, oids, algo):
 	pkey["version"] = Integer(0)
 	pkey["params"] = pub
 	pkey["key"] = key
+	
 
 	return '-----BEGIN PRIVATE KEY-----\n{}\n-----END PRIVATE KEY-----\n'.format(fill(standard_b64encode(pkey.encode()).decode("ascii"), 64))
 
